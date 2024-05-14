@@ -23,3 +23,5 @@ Usage:
 Clone the repository.
 Build and run the project.
 Access the API endpoints using an HTTP client or browser.
+
+![image](https://github.com/alisahin10/crud-api-for-movies-with-golang/assets/78854370/be604dc3-5e5d-4977-bfe5-bfb08a976615)

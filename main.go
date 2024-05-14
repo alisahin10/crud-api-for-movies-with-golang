@@ -62,6 +62,7 @@ func updateMovie(w http.ResponseWriter, r *http.Request) {
 			movie.ID = params["id"]
 			movies = append(movies, movie)
 			json.NewEncoder(w).Encode(movie)
+			return
 
 		}
 	}
@@ -85,10 +86,10 @@ func main() {
 	movies = append(movies, Movie{ID: "1", ISBN: "9780733622625", Title: "Wolf of the Wall Street", Director: &Director{FirstName: "Martin", LastName: "Scorsese"}})
 	movies = append(movies, Movie{ID: "2", ISBN: "9780732622684", Title: "Road House", Director: &Director{FirstName: "Doug", LastName: "Liman"}})
 	router.HandleFunc("/movies", getMovies).Methods("GET")
-	router.HandleFunc("movies/{id}", getMovie).Methods("GET")
-	router.HandleFunc("movies", createMovie).Methods("POST")
+	router.HandleFunc("/movies/{id}", getMovie).Methods("GET")
+	router.HandleFunc("/movies", createMovie).Methods("POST")
 	router.HandleFunc("/movies/{id}", updateMovie).Methods("PUT")
-	router.HandleFunc("movies/{id}", deleteMovie).Methods("DELETE")
+	router.HandleFunc("/movies/{id}", deleteMovie).Methods("DELETE")
 
 	fmt.Println("Starting development server at http://localhost:8000/")
 	log.Fatal(http.ListenAndServe(":8000", router))
